@@ -45,7 +45,7 @@ $ git reset --hard  xxx版本号    #回滚到指定版本号
 #### 撤销本地修改及提交
 ```shell
 
-$ git checkout -- xxx文件名 #撤销指定文件的修改
+$ git checkout -- xxx文件名 #撤销指定文件的修改，慎重！撤销掉的修改将无法找回
 
 $ git reset -- xxx文件名    #撤销指定文件的add提交，恢复到modify状态
 
