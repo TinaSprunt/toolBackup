@@ -93,3 +93,64 @@ $ git push # 将合并推送到远程
 $ git checkout A分支名 # 切换回 A 分支 
 
 ```
+#### 合并冲突
+
+**方法1.commit提交法**
+
+流程：先把本地修改commit到本地仓（产生一次commit，本地工作区变为clean），再pull远程仓，进行冲突合并,再将合并后的修改commit到本地仓（产生一次commit）,再git push到远程
+优点：简单 缺陷：会产生多次commit信息
+
+```shell
+# 1.先commit本地修改
+git add .
+git commit -m "本地修改的代码的说明"
+
+# 2.拉取远程代码
+git pull
+
+# 3.git自行本地合并，编辑器提示冲突
+在vscode界面点击，选择要保留的代码
+
+# 4.重新本地提交
+git add .
+git commit -m "合并冲突的代码的说明"
+
+# 5.推送到远程
+git push
+
+```
+
+**方法2.stash暂存法( 推荐！！！)**
+使用stash暂存修改到本地，再pull远程，再恢复stach暂存的内容，进行冲突合并，再将合并后的修改commit到本地仓（产生一次commit）,再git push到远程
+
+```shell
+# 1.暂存本地修改
+git stash
+
+# 2.查看stash列表
+git stash list
+
+# 3.拉取远程代码
+git pull
+
+# 4.恢复本地修改的内容
+git stash pop
+
+# 5.git自行本地合并，编辑器提示冲突
+在vscode界面点击，选择要保留的代码
+
+# 6.按普通流程提交到远程
+git add .
+git commit -m "本地修改的代码的说明"
+git push
+
+```
+
+ps:执行完 git stash 命令后，modify的文件内容会变成了未修改前，即上一次commit提交的内容
+
+
+#### 常见问题
+[1.为何会产生merge branch dev xxx to dev](http://blog.dreamoon.top/2020/05/31/AvoidMergeMessage/)
+[2.为什么不建议git pull --rebase](https://stackoverflow.com/questions/15439527/git-why-merge-branch-master-of-when-pull-and-push)
+[3.如何使用git stash解决冲突](https://blog.csdn.net/cnds123321/article/details/110743787)
+[4.多次git stash怎么用](https://blog.csdn.net/daguanjia11/article/details/73810577)
