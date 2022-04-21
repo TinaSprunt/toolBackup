@@ -49,7 +49,7 @@ $ git checkout -- xxx文件名 #撤销指定文件的修改
 
 $ git reset -- xxx文件名    #撤销指定文件的add提交，恢复到modify状态
 
-$ git reset xxx版本号  #撤销commit提交，回滚到指定版本号(回滚到误提交的上一次版本号即可)
+$ git reset --soft xxx版本号  #撤销commit提交，恢复到指定版本号状态(保留最新的本地修改为modify状态，与指定版本号对比的modify)
 
 ```
 > 只要commit成功就会产生一个版本号，无论是否push
