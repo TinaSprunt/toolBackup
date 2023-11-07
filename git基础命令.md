@@ -51,7 +51,7 @@ $ git reset --soft xxx版本号  #撤销commit提交，恢复到指定版本号�
 
 ```shell
 
-$ git branch -b xxx分支名 #当前分支为基准创建一个新分支
+$ git branch xxx分支名 #当前分支为基准创建一个新分支
 
 $ git branch -d xxx分支名 #删除指定分支
 
