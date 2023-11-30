@@ -20,11 +20,7 @@ Enter file in which to save the key (/Users/Administrator/.ssh/id_rsa):
 # 此时请根据不同账号进行命名 如 github_id_rsa, 同名的会进行覆盖
 ```
 
-<<<<<<< Updated upstream
-## 3. 在`/Users/Administrator/.ssh/`目录下修改 config 文件
-=======
 ## 3.在`/Users/Administrator/.ssh/`目录下修改 config 文件
->>>>>>> Stashed changes
 
 - Host 是域名地址，必须准确
 - HostName 建议和域名地址一样
