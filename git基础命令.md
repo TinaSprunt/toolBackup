@@ -126,3 +126,5 @@ ps:执行完 git stash 命令后，modify 的文件内容会变成了未修改�
 [3.如何使用 git stash 解决冲突](https://blog.csdn.net/cnds123321/article/details/110743787)
 
 [4.多次 git stash 怎么用](https://blog.csdn.net/daguanjia11/article/details/73810577)
+
+[5.git pull = git fetch + git merge的理解](https://github.com/febobo/web-interview/issues/224)
