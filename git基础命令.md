@@ -29,6 +29,7 @@ $ git reset --hard  xxx版本号    #回滚到指定版本号
 ```shell
 git push -f <remote> <branch name> # 强制推送到远程指定分支
 ```
+> 此时版本回退已经提交到远程，本地和远程的最新版本都是 xxx版本号
 
 ## 缓存区与工作区概念
 
