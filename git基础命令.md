@@ -117,6 +117,29 @@ git push
 
 ps:执行完 git stash 命令后，modify 的文件内容会变成了未修改前，即上一次 commit 提交的内容
 
+## 忽略部分文件不进行合并
+
+1. 在待合并的项目根目录下创建 .gitattributes（保证A分支，B分支下都有这个文件）
+
+2. 创建针对当前仓库的，名为 ours 的自定义 merge driver
+
+
+```shell
+# 在待合并项目的 git bash 中执行此命令
+git config --loacl merge.ours.driver true
+```
+
+ 3. 在 .gitattributes 文件中写入合并时需要忽略的文件，(如下，表示不合并 gitlab-ci.yml )
+
+ ```shell
+ gitlab-ci.yml merge=ours
+ ```
+
+4. 推送 .gitattributes 文件到远程（保证A分支，B分支下都有这个文件）
+
+5. 按照正常的合并流程进行merge即可，此时 merge 将不会检查 .gitattributes 中忽略的文件
+
+
 #### 常见问题
 
 [1.为何会产生 merge branch dev xxx to dev](http://blog.dreamoon.top/2020/05/31/AvoidMergeMessage/)
