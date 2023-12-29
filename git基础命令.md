@@ -26,6 +26,10 @@ $ git reset --hard  xxx版本号    #回滚到指定版本号
 > 本地的版本回退不会影响到远程，除非进行提交
 > 回退后如果不提交到远程，在回滚的基础上进行修改会无法 push
 
+```shell
+git push -f <remote> <branch name> # 强制推送到远程指定分支
+```
+
 ## 缓存区与工作区概念
 
 ![缓存区与工作区概念](./image/git_workspace.png)
