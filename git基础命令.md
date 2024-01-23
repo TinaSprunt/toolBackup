@@ -44,9 +44,11 @@ git push -f <remote> <branch name> # 强制推送到远程指定分支
 
 $ git checkout -- xxx文件名 #撤销指定文件的修改，慎重！撤销掉的修改将无法找回
 
-$ git reset -- xxx文件名    #撤销指定文件的add提交，恢复到modify状态
+$ git reset -- xxx文件名    #撤销指定文件的 add 提交，恢复到 modify 状态
 
-$ git reset --soft xxx版本号  #撤销commit提交，恢复到指定版本号状态(保留最新的本地修改为modify状态，与指定版本号对比的modify)
+$ git reset --soft <commitHash>  #撤销 commit 提交，恢复到指定版本号状态(保留最新的本地修改为 modify 状态，与指定版本号对比的modify)
+
+$ git merge --abort #撤销本地合并（对没有 push 的 merge 使用）
 
 ```
 
@@ -144,6 +146,37 @@ git config --loacl merge.ours.driver true
 
 5. 按照正常的合并流程进行merge即可，此时 merge 将不会检查 .gitattributes 中忽略的文件
 
+
+## 合并部分commit提交
+
+参考：https://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html
+
+```shell
+$ git checkout A分支名 # 切换到 A 分支
+
+# 合并单个提交
+$ git cherry-pick  <commitHash> --continue # 将其他分支的某次提交(commitHash表示 commitid)合并到分支A 
+
+# 合并多个提交
+$ git cherry-pick <commitHashA> <commitHashB> --continue # 将其他分支的多个提交合并到分支A （--continue表示如果发生代码冲突，Cherry pick 会停下来，让用户决定如何继续操作）
+
+# 将合并结果推送到远程
+$ git push # 将合并结果推送到远程
+
+# 如何取消合并
+$ git cherry-pick --abort # 退出 Cherry pick，并撤销所有修改
+
+# 如何退出合并状态
+$ git cherry-pick --quit # 发生代码冲突后，退出 Cherry pick，但是不回到操作前的样子
+
+```
+
+> 使用 git cherry-pick 本质上并不是合并，如 `git cherry-pick <commitHashA> <commitHashB> `
+>
+> 只是将其他分支的` <commitHashA> <commitHashB> `两次提交复制到分支A中
+>
+> 分支A上会产生新的2条 commit 记录，`commitHashC` 和 `commitHashD`，其中 `commitHashC` 内容与 `commitHashA` 完全一致，其中 `commitHashD` 内容与 `commitHashB` 完全一致，效果上可以当作合并使用
+>
 
 #### 常见问题
 
